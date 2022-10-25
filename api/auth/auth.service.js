@@ -1,6 +1,7 @@
+const userService = require('../user/user.service');
 class AuthService {
-    async register({ email, fullName, password }) { 
-        return 'hello';
+    register(user) { 
+        return userService.createUser(user);
     } 
 }
 

@@ -2,8 +2,13 @@ const authService = require("./auth.service");
 
 class AuthController {
   async register(req, res) {
-    const newUser = await authService.register('khang', 'sad', 'asda');
-    res.json(newUser);
+    try {
+      const user = req.body;
+      const newUser = await authService.register(user);
+      res.json(newUser);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   }
 }
 
