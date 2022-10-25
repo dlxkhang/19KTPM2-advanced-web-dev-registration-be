@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const userModel = require("./user.model");
 
 class UserService {
@@ -6,10 +7,11 @@ class UserService {
     const existedUser = await userModel.findOne({ email: email });
     if (existedUser) throw new Error("User already exists");
 
+    const hashedPassword = await bcrypt.hash(password, 10);
     return userModel.create({
       email,
       fullName,
-      password,
+      password: hashedPassword,
     });
   }
 }
