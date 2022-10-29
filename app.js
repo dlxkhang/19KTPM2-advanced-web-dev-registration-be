@@ -15,17 +15,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+
 // Cors option
 const options = {
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: 'http://localhost:3000',
+  methods: "GET, POST, DELETE",
   credentials: true,
   // allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept",
 };
 
 app.use(cors(options));
-// enabling pre-flight
-// app.options("http://localhost:3000", cors(options));
+// app.options("*", cors(options));
 
 //routes init
 route(app);
