@@ -15,10 +15,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-
+const origin =
+  app.get("env") === "development"
+    ? "http://localhost:3000"
+    : "https://registration-be.vercel.app/";
 // Cors option
 const options = {
-  origin: ["http://localhost:3000, https://www.apirequest.io/"],
+  origin: origin,
   methods: "GET, POST, DELETE",
   credentials: true,
   // allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept",
