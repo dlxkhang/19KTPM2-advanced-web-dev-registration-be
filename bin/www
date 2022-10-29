@@ -13,7 +13,7 @@ mongoose
   .then(() => {
     console.log("Connected to DB successfully");
 
-    const app = require("../index");
+    const app = require("../app");
     /**
      * Get port from environment and store in Express.
      */
