@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, "public")));
 const origin =
   app.get("env") === "development"
     ? "http://localhost:3000"
-    : "https://registration-be.vercel.app/";
+    : "https://registration-be.vercel.app";
 // Cors option
 const options = {
   origin: origin,
