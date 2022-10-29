@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Cors option
 const options = {
-  origin: ["http://localhost:3000"],
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
   // allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept",
