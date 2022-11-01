@@ -15,20 +15,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-const origin =
-  app.get("env") === "development"
-    ? "http://localhost:3000"
-    : "https://19ktpm2-registration-fe.vercel.app";
 // Cors option
 const options = {
-  origin: ["http://localhost:3000"],
+  origin: [
+    "http://localhost:3000",
+    "https://19ktpm2-registration-fe.vercel.app",
+  ],
   methods: "GET, POST, DELETE",
   credentials: true,
-  // allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept",
 };
 
 app.use(cors(options));
-// app.options("*", cors(options));
 
 //routes init
 route(app);

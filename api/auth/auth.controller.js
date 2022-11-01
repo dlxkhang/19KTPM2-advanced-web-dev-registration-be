@@ -7,7 +7,9 @@ class AuthController {
       const newUser = await authService.register(user);
       res.json(newUser);
     } catch (err) {
-      res.status(err.statusCode).send(err.message);
+      res
+        .status(err.statusCode ? err.statusCode : 500)
+        .send(err.statusCode ? err.message : "Internal Server Error");
     }
   }
 
@@ -17,7 +19,9 @@ class AuthController {
       const user = await authService.login(loginDto);
       res.json(user);
     } catch (err) {
-      res.status(err.statusCode).send(err.message);
+      res
+        .status(err.statusCode ? err.statusCode : 500)
+        .send(err.statusCode ? err.message : "Internal Server Error");
     }
   }
 }

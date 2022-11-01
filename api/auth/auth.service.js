@@ -18,7 +18,7 @@ class AuthService {
 
   async login(loginDto) {
     const user = await userService.getUserByEmail(loginDto.email);
-    const passwordMatch = await bcrypt.compare(loginDto, user.password);
+    const passwordMatch = await bcrypt.compare(loginDto.password, user.password);
     if (!passwordMatch) throw AUTH_ERROR_CODE.WRONG_PROVIDED_PASSWORD;
 
     const token = uuidv4();
