@@ -21,7 +21,7 @@ const origin =
     : "https://19ktpm2-registration-fe.vercel.app";
 // Cors option
 const options = {
-  origin: origin,
+  origin: ["http://localhost:3000"],
   methods: "GET, POST, DELETE",
   credentials: true,
   // allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept",

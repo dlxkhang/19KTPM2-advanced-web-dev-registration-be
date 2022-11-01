@@ -7,7 +7,17 @@ class AuthController {
       const newUser = await authService.register(user);
       res.json(newUser);
     } catch (err) {
-      res.status(500).send(err.message);
+      res.status(err.statusCode).send(err.message);
+    }
+  }
+
+  async login(req, res) {
+    try {
+      const loginDto = req.body;
+      const user = await authService.login(loginDto);
+      res.json(user);
+    } catch (err) {
+      res.status(err.statusCode).send(err.message);
     }
   }
 }

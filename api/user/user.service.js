@@ -1,18 +1,16 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
+const { USER_ERROR_CODE } = require("../../common/error-code");
 const userModel = require("./user.model");
 
 class UserService {
-  async createUser({ email, fullName, password }) {
-    // Check if user already exists
-    const existedUser = await userModel.findOne({ email: email });
-    if (existedUser) throw new Error("User already exists");
+  async createUser(user) {
+    return userModel.create(user);
+  }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    return userModel.create({
-      email,
-      fullName,
-      password: hashedPassword,
-    });
+  async getUserByEmail(email) {
+    const user = await userModel.findOne({ email });
+    if (!user) throw USER_ERROR_CODE.EMAIL_NOT_FOUND;
+    return user;
   }
 }
 
