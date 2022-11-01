@@ -9,7 +9,7 @@ class AuthService {
     const existedUser = await userService.getUserByEmail(user.email);
     if (existedUser) throw USER_ERROR_CODE.EMAIL_ALREADY_EXIST;
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(user.password, 10);
     return userService.createUser({
       ...user,
       password: hashedPassword,
