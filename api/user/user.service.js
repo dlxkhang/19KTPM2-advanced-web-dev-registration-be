@@ -8,9 +8,7 @@ class UserService {
   }
 
   async getUserByEmail(email) {
-    const user = await userModel.findOne({ email });
-    if (!user) throw USER_ERROR_CODE.EMAIL_NOT_FOUND;
-    return user;
+    return userModel.findOne({ email });
   }
 }
 

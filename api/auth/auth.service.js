@@ -18,6 +18,7 @@ class AuthService {
 
   async login(loginDto) {
     const user = await userService.getUserByEmail(loginDto.email);
+    if (!user) throw USER_ERROR_CODE.EMAIL_NOT_FOUND;
     const passwordMatch = await bcrypt.compare(loginDto.password, user.password);
     if (!passwordMatch) throw AUTH_ERROR_CODE.WRONG_PROVIDED_PASSWORD;
 
