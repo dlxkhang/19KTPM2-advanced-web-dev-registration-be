@@ -1,7 +1,9 @@
 const { v4: uuidv4 } = require("uuid");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const { AUTH_ERROR_CODE, USER_ERROR_CODE } = require("../../common/error-code");
 const userService = require("../user/user.service");
+const { Config } = require("../../config");
 
 class AuthService {
   async register(user) {
@@ -16,17 +18,10 @@ class AuthService {
     });
   }
 
-  async login(loginDto) {
-    const user = await userService.getUserByEmail(loginDto.email);
-    if (!user) throw USER_ERROR_CODE.EMAIL_NOT_FOUND;
-    const passwordMatch = await bcrypt.compare(loginDto.password, user.password);
-    if (!passwordMatch) throw AUTH_ERROR_CODE.WRONG_PROVIDED_PASSWORD;
-
-    const token = uuidv4();
-    return {
-      token: token,
-      fullName: user.fullName,
-    };
+  generateAccessToken(_id, email, fullName) {
+    return jwt.sign({ _id, email, fullName }, Config.JWT_SECRET, {
+      expiresIn: "15m",
+    });
   }
 }
 

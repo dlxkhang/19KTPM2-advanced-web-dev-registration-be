@@ -7,6 +7,10 @@ module.exports.USER_ERROR_CODE = {
     statusCode: 400,
     message: "Email not found",
   },
+  ID_NOT_FOUND: {
+    statusCode: 400,
+    message: "User ID not found",
+  },
 };
 
 module.exports.AUTH_ERROR_CODE = {
