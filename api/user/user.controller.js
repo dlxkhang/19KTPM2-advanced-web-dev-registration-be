@@ -1,7 +1,6 @@
 const userService = require("./user.service");
 
 class UserController {
-
   async getProfile(req, res) {
     try {
       const { _id } = req.user;

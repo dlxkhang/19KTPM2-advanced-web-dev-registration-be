@@ -9,11 +9,6 @@ router.post(
   passport.authenticate("local", { session: false }),
   authController.login
 );
-router.get(
-  "/profile",
-  passport.authenticate("jwt", { session: false }),
-  authController.getProfile
-);
-
+router.post("/refresh", authController.refreshAccessToken);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const { USER_ERROR_CODE } = require("../../common/error-code");
-const userModel = require("./user.model");
+const userModel = require("./model/user.model");
 
 class UserService {
   async createUser(user) {

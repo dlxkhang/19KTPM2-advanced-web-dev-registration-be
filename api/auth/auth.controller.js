@@ -16,11 +16,12 @@ class AuthController {
   async login(req, res) {
     try {
       const { _id, email, fullName } = req.user;
+      const session = await authService.generateTokens(_id, email, fullName);
       res.json({
         _id,
         email,
         fullName,
-        accessToken: authService.generateAccessToken(_id, email, fullName),
+        session,
       });
     } catch (err) {
       res
@@ -29,11 +30,11 @@ class AuthController {
     }
   }
 
-  async getProfile(req, res) {
+  async refreshAccessToken(req, res) {
     try {
-      const { _id } = req.user;
-      const userProfile = await authService.getProfileById(_id);
-      res.json(userProfile);
+      const { refreshToken } = req.body;
+      const session = await authService.refreshAccessToken(refreshToken);
+      res.json({ session });
     } catch (err) {
       res
         .status(err.statusCode ? err.statusCode : 500)

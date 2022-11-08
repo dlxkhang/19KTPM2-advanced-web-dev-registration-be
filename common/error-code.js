@@ -18,4 +18,8 @@ module.exports.AUTH_ERROR_CODE = {
     statusCode: 400,
     message: "Wrong provided password",
   },
+  INVALID_REFRESH_TOKEN: {
+    statusCode: 401,
+    message: "Invalid refresh token",
+  },
 };
